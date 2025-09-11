@@ -1,0 +1,103 @@
+body {
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at top, #331414, #1a1a1a 50%, #000 100%),
+                radial-gradient(circle at bottom, rgba(24, 88, 15, 0.6), transparent 60%),
+                radial-gradient(circle at bottom, rgba(23, 80, 16, 0.4), transparent 70%),
+                radial-gradient(circle at top, rgba(10, 68, 15, 0.4), transparent 80%);
+    background-blend-mode: screen, normal;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #096b00;
+    padding: 1rem 1rem;
+    color: rgb(157, 0, 248);
+    gap: 2rem;
+}
+
+.titulo {
+    margin: 0;
+    font-weight: 700;
+}
+
+.navBar {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navBtn {
+    color: rgb(157, 0, 248);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navBtn:hover {
+    color: #fff;
+}
+
+.menuPrincipal {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 120px);
+    justify-content: space-between;
+}
+
+.areaContent {
+    flex: 1;
+    padding: 2rem;
+}
+
+.lateralMenu {
+    width: 70px;
+    background-color: #096b00;
+    padding: 1.5rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    border-left: 1px solid #000000;
+}
+
+.sideLink {
+    position: relative;
+    text-decoration: none;
+    color: #9d00f8;
+    font-weight: 500;
+    padding-left: 10px;
+    transition: color 0.3s;
+}
+
+.sideLink::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: #fff;
+    transition: width 0.3s;
+}
+
+.sideLink:hover::after {
+    width: 4px;
+}
+
+.sideLink:hover {
+    color: #fff;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #02880d;
+    border-top: 1px solid #ddd;
+    color: #fff;
+}

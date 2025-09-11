@@ -1,8 +1,14 @@
 {% extends '__base.html' %}
 
+{% load static %}
+
 {% block title %}Página Inicial{% endblock %}
 
+{% block css2 %}
+<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
+{% endblock css2 %}
+
 {% block content %}
-<h1>Bem-vindo ao Mercadinho Local!</h1>
+<h1>Bem-vindo ao EzShopping!</h1>
 <p>Explore produtos e faça seus pedidos!</p>
-{% endblock %}
+{% endblock content %}

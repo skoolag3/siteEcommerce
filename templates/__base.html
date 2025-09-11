@@ -3,20 +3,41 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}EzShopping{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% block css %}{% endblock %}
+    <title>{% block title %}{% endblock %} | EzShopping</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    {% block css1 %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% endblock css1 %}
 </head>
 <body>
 
-    {% include '_layouts.html' %}
+    {% block header %}
+    <header class="header">
+        <h2 class="titulo">EzShopping</h2>
+        <nav class="navBar">
+            <a class="navBtn" href="/">Início</a>
+            <a class="navBtn" href="/produtos/">Produtos</a>
+            <a class="navBtn" href="/sobre/">Sobre</a>
+        </nav>
+    </header>
+    {% endblock header %}
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <div class="menuPrincipal">
+        <main class="areaContent">
+            {% block content %}{% endblock %}
+        </main>
 
-    {% block javascript %}{% endblock %}
+        <aside class="lateralMenu">
+            <a class="sideLink" href="/carrinho/">Carrinho</a>
+            <a class="sideLink" href="/usuarios/">Perfil</a>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 EzShopping</p>
+    </footer>
 
 </body>
 </html>
