@@ -1,0 +1,22 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block css2 %}{% endblock %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+{% block content %}
+<body>
+ <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="">Salvar</button>
+    </form>
+</body>
+{% endblock content %}
+</html>
