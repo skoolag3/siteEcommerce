@@ -1,0 +1,54 @@
+
+.vitrineProdutos {
+    margin: 30px 20px;
+}
+
+.vitrineProdutos h2 {
+    margin-bottom: 15px;
+    color: #ffb800;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+.produtosApp {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.cardProduto {
+    background-color: #2d2a55;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.imagemProduto {
+    width: 100%;
+    max-width: 120px;
+    height: 100px;
+    object-fit: contain;
+    margin: 0 auto 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.tituloProduto {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #e0c3ff;
+}
+
+.precoProduto {
+    font-weight: bold;
+    color: #ffb800;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .produtosApp {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}

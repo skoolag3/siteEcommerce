@@ -1,0 +1,43 @@
+.formContainer {
+    max-width: 320px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #2d2a55;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+}
+
+.tituloForm {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #e0c3ff;
+}
+
+.botoesForm {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.btnForm {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btnSalvarForm { background-color: #7f3fff; }
+.btnCancelarForm { background-color: #3cb371; }
+
+label {
+    color: #ffffff;
+}
+
+input, textarea, select {
+    color: #000000;
+}

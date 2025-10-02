@@ -23,3 +23,20 @@ class CadastroForm(forms.Form):
         help_text='Digite sua senha novamente',
         widget=forms.PasswordInput(attrs={'type':'password', 'size':30})
     )
+
+class LoginForm(forms.Form):
+    usuario = forms.CharField(
+        label='Usuário',
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Digite seu usuário',
+            'size': 30
+        })
+    )
+    senha = forms.CharField(
+        label='Senha',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Digite sua senha',
+            'size': 30
+        })
+    )

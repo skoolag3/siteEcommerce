@@ -1,0 +1,46 @@
+.formContainer {
+    background-color: #2d2a55;
+    max-width: 320px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+.tituloForm {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #e0c3ff;
+}
+
+.textoProduto {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.botoesForm {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btnForm {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btnCancelarForm {
+    background-color: #3cb371;
+}
+
+.btnDeletarForm {
+    background-color: #ff4d4d;
+}

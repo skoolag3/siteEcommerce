@@ -1,0 +1,47 @@
+{% extends '__base.html' %}
+ 
+{% load static %}
+
+{% block title %}Produtos{% endblock %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+{% block content %}
+
+<body>
+
+<div class="acoesTopo">
+    <a href="{% url 'produtos:criarProdutos' %}" class="btnCriar">Coloque o seu produto</a>
+</div>
+
+<div class="produtosApp">
+    {% for p in produtos %}
+        <div class="cardProduto">
+            <img src="{% static 'imgs/template.png' %}" alt="{{ p.nome }}" class="imagemProduto">
+            <h2 class="tituloProduto">{{ p.nome }}</h2>
+            <p class="descricaoProduto">{{ p.descricao }}</p>
+            <p class="precoProduto">R$ {{ p.preco }}</p>
+            <p class="estoqueProduto"><strong>Estoque:</strong> {{ p.estoque }}</p>
+
+            <div class="botoesProduto">
+                <a href="{% url 'produtos:atualizarProdutos' p.idProdutos %}" class="btnAlterar">Alterar</a>
+                <a href="{% url 'produtos:deletarProdutos' p.idProdutos %}" class="btnDeletar">Deletar</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="semProdutos">Sem produtos</p>
+    {% endfor %}
+</div>
+
+
+</body>
+{% endblock %}
+</html>
