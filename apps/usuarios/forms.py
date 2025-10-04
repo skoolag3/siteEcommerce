@@ -5,24 +5,33 @@ class CadastroForm(forms.Form):
     usuario = forms.CharField(
         label='Nome de Usuário',
         max_length=150,
-        help_text='Digite seu nome de usuário',
-        widget=forms.TextInput(attrs={'type':'text', 'size':30})
+        widget=forms.TextInput(attrs={
+            'class': 'form-input',
+            'placeholder': 'Digite seu usuário'
+        })
     )
     email = forms.EmailField(
         label='Email',
-        help_text='Digite seu email',
-        widget=forms.EmailInput(attrs={'type':'email', 'size':30})
+        widget=forms.EmailInput(attrs={
+            'class': 'form-input',
+            'placeholder': 'Digite seu email'
+        })
     )
     senha = forms.CharField(
         label='Senha',
-        help_text='Digite sua senha',
-        widget=forms.PasswordInput(attrs={'type':'password', 'size':30})
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-input',
+            'placeholder': 'Digite sua senha'
+        })
     )
     senhaconfirm = forms.CharField(
         label='Confirmar Senha',
-        help_text='Digite sua senha novamente',
-        widget=forms.PasswordInput(attrs={'type':'password', 'size':30})
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-input',
+            'placeholder': 'Confirme sua senha'
+        })
     )
+
 
 class LoginForm(forms.Form):
     usuario = forms.CharField(

@@ -1,0 +1,91 @@
+.formCadastro {
+    background: #1b1f1d;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    max-width: 420px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formLabel {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: #e0e0e0;
+}
+
+.form-input {
+    width: 70%;
+    padding: 14px 12px;
+    border: 1px solid #666;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #2a2e2b;
+    color: #fff;
+}
+
+.form-input:focus {
+    border: 1px solid #a259ff;
+    background: #333834;
+    outline: none;
+}
+
+.formBtn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background: #a259ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formBtn:hover {
+    background: #8e44e6;
+}
+
+.formBtnSecond {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background: transparent;
+    color: #a259ff;
+    border: 2px solid #a259ff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formBtnSecond:hover {
+    background: #a259ff;
+    color: white;
+}
+
+.formTexto {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.formTexto a {
+    color: #a259ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.formTexto a:hover {
+    text-decoration: underline;
+}
