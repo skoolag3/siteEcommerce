@@ -1,51 +1,19 @@
-# apps/usuarios/forms.py
 from django import forms
-
-class CadastroForm(forms.Form):
-    usuario = forms.CharField(
-        label='Nome de Usuário',
-        max_length=150,
-        widget=forms.TextInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Digite seu usuário'
-        })
-    )
-    email = forms.EmailField(
-        label='Email',
-        widget=forms.EmailInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Digite seu email'
-        })
-    )
-    senha = forms.CharField(
-        label='Senha',
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Digite sua senha'
-        })
-    )
-    senhaconfirm = forms.CharField(
-        label='Confirmar Senha',
-        widget=forms.PasswordInput(attrs={
-            'class': 'form-input',
-            'placeholder': 'Confirme sua senha'
-        })
-    )
+from apps.usuarios.models import Endereco, User
 
 
-class LoginForm(forms.Form):
-    usuario = forms.CharField(
-        label='Usuário',
-        max_length=150,
-        widget=forms.TextInput(attrs={
-            'placeholder': 'Digite seu usuário',
-            'size': 30
-        })
-    )
-    senha = forms.CharField(
-        label='Senha',
-        widget=forms.PasswordInput(attrs={
-            'placeholder': 'Digite sua senha',
-            'size': 30
-        })
-    )
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'nome', 'email', 'telefone', 'cpf', 'data_nascimento']
+        widgets = {
+            'data_nascimento': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+class EnderecoForm(forms.ModelForm):
+    class Meta:
+        model = Endereco
+        fields = '__all__'
+        widgets = {
+            'criado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }

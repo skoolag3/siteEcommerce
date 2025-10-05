@@ -1,19 +1,20 @@
 from django.db import models
 from django.conf import settings
 
+# Create your models here.
 class Pedido(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='pedidos')
-    endereco_entrega = models.ForeignKey('accounts.Endereco', on_delete=models.SET_NULL, null=True)
+    endereco_entrega = models.ForeignKey('usuarios.Endereco', on_delete=models.SET_NULL, null=True)
     
     STATUS_CHOICES = [
-        ('pendente'),
-        ('confirmado'),
-        ('processando'),
-        ('enviado'),
-        ('entregue'),
-        ('cancelado'),
-        ('devolvido'),
-        ('reembolsado'),
+        ('pendente', 'Pendente'),
+        ('confirmado', 'Confirmado'),
+        ('processando', 'Processando'),
+        ('enviado', 'Enviado'),
+        ('entregue', 'Entregue'),
+        ('cancelado', 'Cancelado'),
+        ('devolvido', 'Devolvido'),
+        ('reembolsado', 'Reembolsado'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
     
@@ -25,7 +26,7 @@ class Pedido(models.Model):
     desconto = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     
-    codigo_rastreio = models.CharField(max_length=100, blank=True)
+    #codigo_rastreio
     observacoes = models.TextField(blank=True)
 
     class Meta:
@@ -37,18 +38,18 @@ class Pedido(models.Model):
 
 class PedidoItem(models.Model):
     pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name='itens')
-    produto = models.ForeignKey('products.Produto', on_delete=models.CASCADE)
-    variacao = models.ForeignKey('products.ProdutoVariacao', on_delete=models.SET_NULL, null=True, blank=True)
-    vendedor = models.ForeignKey('vendors.Vendedor', on_delete=models.SET_NULL, null=True)
+    produto = models.ForeignKey('produtos.Produto', on_delete=models.CASCADE)
+    variacao = models.ForeignKey('produtos.ProdutoVariacao', on_delete=models.SET_NULL, null=True, blank=True)
+    vendedor = models.ForeignKey('vendedores.Vendedor', on_delete=models.SET_NULL, null=True)
     quantidade = models.PositiveIntegerField(null=False, default=1)
     preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
     
     STATUS_CHOICES = [
-        ('pendente'),
-        ('confirmado'),
-        ('enviado'),
-        ('entregue'),
-        ('cancelado'),
+        ('pendente', 'Pendente'),
+        ('confirmado', 'Confirmado'),
+        ('enviado', 'Enviado'),
+        ('entregue', 'Entregue'),
+        ('cancelado', 'Cancelado'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
 

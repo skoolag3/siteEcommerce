@@ -1,13 +1,21 @@
 from django import forms
-from .models import Carrinho, ItemCarrinho
+
+from apps.carrinho.models import Carrinho, CarrinhoItem
+
 
 class CarrinhoForm(forms.ModelForm):
     class Meta:
         model = Carrinho
-        fields = ['identificador']
+        fields = '__all__'
+        widgets = {
+            'criado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'atualizado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }
 
-
-class ItemCarrinhoForm(forms.ModelForm):
+class CarrinhoItemForm(forms.ModelForm):
     class Meta:
-        model = ItemCarrinho
-        fields = ['nomeProduto', 'precoUni', 'quantidade', 'idCarrinho']
+        model = CarrinhoItem
+        fields = '__all__'
+        widgets = {
+            'adicionado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+        }

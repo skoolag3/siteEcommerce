@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'apps.carrinho',
     'apps.pagamento',
     'apps.pedidos',
-    'apps.empresas',
+    'apps.vendedores',
+    'apps.avaliacoes',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+AUTH_USER_MODEL = 'usuarios.User'

@@ -1,15 +1,27 @@
 from django import forms
-from .models import Produtos
+from apps.produtos.models import Categoria, Produto, ProdutoVariacao, Subcategoria
 
-class ProdutosForm(forms.ModelForm):
+
+class CategoriaForm(forms.ModelForm):
     class Meta:
-        model = Produtos
-        fields = ['nome', 'preco', 'estoque', 'descricao', 'imagem', 'categoria']
+        model = Categoria
+        fields = '__all__'
+
+class SubcategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Subcategoria
+        fields = '__all__'
+
+class ProdutoForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = '__all__'
         widgets = {
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'preco': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'estoque': forms.NumberInput(attrs={'class': 'form-control'}),
-            'descricao': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'imagem': forms.TextInput(attrs={'class': 'form-control'}),
-            'categoria': forms.TextInput(attrs={'class': 'form-control'}),
+            'criado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'atualizado_em': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+
+class ProdutoVariacaoForm(forms.ModelForm):
+    class Meta:
+        model = ProdutoVariacao
+        fields = '__all__'

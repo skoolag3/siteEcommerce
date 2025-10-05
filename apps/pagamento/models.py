@@ -1,26 +1,24 @@
 from django.db import models
 
-
-
-
+# Create your models here.
 class Pagamento(models.Model):
-    pedido = models.OneToOneField('orders.Pedido', on_delete=models.CASCADE, related_name='pagamento')
+    pedido = models.OneToOneField('pedidos.Pedido', on_delete=models.CASCADE, related_name='pagamento')
     
     METODO_CHOICES = [
-        ('pix'),
-        ('credito'),
-        ('debito'),
-        ('boleto'),
+        ('pix', 'Pix'),
+        ('credito', 'Credito'),
+        ('debito', 'Debito'),
+        ('boleto', 'Boleto'),
     ]
     metodo = models.CharField(max_length=50, choices=METODO_CHOICES)
     
     STATUS_CHOICES = [
-        ('pendente'),
-        ('processando'),
-        ('aprovado'),
-        ('recusado'),
-        ('cancelado'),
-        ('estornado'),
+        ('pendente', 'Pendente'),
+        ('processando', 'Processando'),
+        ('aprovado', 'Aprovado'),
+        ('recusado', 'Recusado'),
+        ('cancelado', 'Cancelado'),
+        ('estornado', 'Estornado'),
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente')
     
