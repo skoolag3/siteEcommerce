@@ -48,7 +48,7 @@ def del_empresa(request, pk):
         aviso = 'empresa deletada'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_empresa'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'empresas/empresa_del.html', context)
 
 
@@ -92,5 +92,5 @@ def del_vendedor(request, pk):
         aviso = 'vendedor deletado'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_vendedor'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'vendedor/vendedor_del.html', context)

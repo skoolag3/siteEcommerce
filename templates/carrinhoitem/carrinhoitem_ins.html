@@ -2,7 +2,7 @@
  
 {% load static %}
 
-{% block title %}Deletar avaliacao{% endblock %}
+{% block title %}Inserir item no carrinho{% endblock %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,13 +18,13 @@
 
 <body>
 
-<h2>Deletar aliavacao</h2>
-<p>Deseja realmente excluir a avaliacao <strong>{{ obj.nome }}</strong>?</p>
-<form method="post">
+<h2>Inserir item no carrinho</h2>
+<form action="{% url 'ins_carrinhoitem' %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="Confirmar exclusão">
+    {{ form }}
+    <input type="submit" value="Salvar">
 </form>
-<a href="{% url 'list_avaliacao' %}">Cancelar</a>
+<a href="{% url 'list_carrinhoitem' %}">Voltar</a>
 
 </body>
 {% endblock %}

@@ -2,7 +2,7 @@
  
 {% load static %}
 
-{% block title %}Deletar avaliacao{% endblock %}
+{% block title %}Atualizar item do carrinho{% endblock %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,14 +17,14 @@
 {% block content %}
 
 <body>
-
-<h2>Deletar aliavacao</h2>
-<p>Deseja realmente excluir a avaliacao <strong>{{ obj.nome }}</strong>?</p>
-<form method="post">
+    
+<h2>Atualizar item do carrinho</h2>
+<form action="{% url 'upd_carrinhoitem' obj.id %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="Confirmar exclusão">
+    {{ form }}
+    <input type="submit" value="Atualizar">
 </form>
-<a href="{% url 'list_avaliacao' %}">Cancelar</a>
+<a href="{% url 'list_carrinhoitem' %}">Voltar</a>
 
 </body>
 {% endblock %}

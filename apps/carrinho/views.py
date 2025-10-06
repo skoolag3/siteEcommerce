@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib import messages
 from django.urls import reverse
 from apps.carrinho.models import Carrinho, CarrinhoItem
@@ -14,15 +14,15 @@ def ins_carrinho(request):
             form.save()
             aviso = 'carrinho criado'
             messages.success(request, aviso)
-            return redirect(reverse('list_carrinho'))
+            return HttpResponseRedirect(reverse('list_carrinho'))
     else:
         form = CarrinhoForm()
-    return render(request, 'carrinho/form.html', {'form': form})
+    return render(request, 'carrinho/carrinho_ins.html', {'form': form})
 
 
 def list_carrinho(request):
     carrinhos = Carrinho.objects.all()
-    return render(request, 'carrinho/list.html', {'objects': carrinhos})
+    return render(request, 'carrinho/carrinhos.html', {'objects': carrinhos})
 
 
 
@@ -35,10 +35,11 @@ def upd_carrinho(request, pk):
             form.save()
             aviso = 'carrinho atualizado'
             messages.success(request, aviso)
-            return redirect(reverse('list_carrinho'))
+            return HttpResponseRedirect(reverse('list_carrinho'))
     else:
         form = CarrinhoForm(instance=obj)
-    return render(request, 'carrinho/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'carrinho/carrinho_upd.html', context)
 
 
 def del_carrinho(request, pk):
@@ -47,8 +48,9 @@ def del_carrinho(request, pk):
         obj.delete()
         aviso = 'carrinho deletado'
         messages.success(request, aviso)
-        return redirect(reverse('list_carrinho'))
-    return render(request, 'carrinho/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_carrinho'))
+    context =  {'obj': obj}
+    return render(request, 'carrinho/carrinho_del.html', context)
 
 #crud carrinhoItem
 def ins_carrinhoitem(request):
@@ -58,15 +60,15 @@ def ins_carrinhoitem(request):
             form.save()
             aviso = 'item carrinho inserido'
             messages.success(request, aviso)
-            return redirect(reverse('list_carrinhoitem'))
+            return HttpResponseRedirect(reverse('list_carrinhoitem'))
     else:
         form = CarrinhoItemForm()
-    return render(request, 'carrinhoitem/form.html', {'form': form})
+    return render(request, 'carrinhoitem/carrinhoitem_ins.html', {'form': form})
 
 
 def list_carrinhoitem(request):
     itens = CarrinhoItem.objects.all()
-    return render(request, 'carrinhoitem/list.html', {'objects': itens})
+    return render(request, 'carrinhoitem/carrinhositem.html', {'objects': itens})
 
 def upd_carrinhoitem(request, pk):
     obj = get_object_or_404(CarrinhoItem, pk=pk)
@@ -76,10 +78,11 @@ def upd_carrinhoitem(request, pk):
             form.save()
             aviso = 'item carrinho atualizado'
             messages.success(request, aviso)
-            return redirect(reverse('list_carrinhoitem'))
+            return HttpResponseRedirect(reverse('list_carrinhoitem'))
     else:
         form = CarrinhoItemForm(instance=obj)
-    return render(request, 'carrinhoitem/form.html', {'form': form})
+        context =  {'form': form, 'obj': obj}
+    return render(request, 'carrinhoitem/carrinhoitem_upd.html', context)
 
 def del_carrinhoitem(request, pk):
     obj = get_object_or_404(CarrinhoItem, pk=pk)
@@ -87,5 +90,6 @@ def del_carrinhoitem(request, pk):
         obj.delete()
         aviso = 'item carrinho removido'
         messages.success(request, aviso)
-        return redirect(reverse('list_carrinhoitem'))
-    return render(request, 'carrinhoitem/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_carrinhoitem'))
+    context = {'obj': obj}
+    return render(request, 'carrinhoitem/carrinhoitem_del.html', context)

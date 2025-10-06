@@ -49,5 +49,5 @@ def del_avaliacao(request, pk):
         aviso = 'avaliação deletada'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_avaliacao'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'avaliacao/avaliacao_del.html', context)

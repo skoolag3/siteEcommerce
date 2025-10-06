@@ -31,7 +31,7 @@
             <td>{{ v.id }}</td>
             <td>{{ v.usuario.nome }}</td>
             <td>{{ v.usuario.email }}</td>
-            <td>{% if v.empresa %}{{ v.empresa.nome }}{% else %}-{% endif %}</td>
+            <td>{% if v.empresa %}{{ v.empresa.nome_fantasia }}{% else %}-{% endif %}</td>
             <td>{{ v.get_status_display }}</td>
             <td>{{ v.comissao_percentual }}</td>
             <td>{{ v.data_cadastro|date:"d/m/Y H:i" }}</td>

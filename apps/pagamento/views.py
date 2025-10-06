@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.contrib import messages
 from django.urls import reverse
 from apps.pagamento.models import Pagamento
@@ -14,15 +14,15 @@ def ins_pagamento(request):
             form.save()
             aviso = 'Pagamento criado'
             messages.success(request, aviso)
-            return redirect(reverse('list_pagamento'))
+            return HttpResponseRedirect(reverse('list_pagamento'))
     else:
         form = PagamentoForm()
-    return render(request, 'pagamento/form.html', {'form': form})
+    return render(request, 'pagamento/pagamento_ins.html', {'form': form})
 
 
 def list_pagamento(request):
     pagamentos = Pagamento.objects.all()
-    return render(request, 'pagamento/list.html', {'objects': pagamentos})
+    return render(request, 'pagamento/pagamentos.html', {'objects': pagamentos})
 
 
 
@@ -34,10 +34,11 @@ def upd_pagamento(request, pk):
             form.save()
             aviso = 'Pagamento atualizado'
             messages.success(request, aviso)
-            return redirect(reverse('list_pagamento'))
+            return HttpResponseRedirect(reverse('list_pagamento'))
     else:
         form = PagamentoForm(instance=obj)
-    return render(request, 'pagamento/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'pagamento/pagamento_upd.html', context)
 
 
 def del_pagamento(request, pk):
@@ -46,5 +47,6 @@ def del_pagamento(request, pk):
         obj.delete()
         aviso = 'Pagamento deletado'
         messages.success(request, aviso)
-        return redirect(reverse('list_pagamento'))
-    return render(request, 'pagamento/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_pagamento'))
+    context = {'obj': obj}
+    return render(request, 'pagamento/pagamento_del.html', context)

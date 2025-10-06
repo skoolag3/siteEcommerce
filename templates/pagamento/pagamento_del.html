@@ -2,14 +2,14 @@
  
 {% load static %}
 
-{% block title %}Deletar avaliacao{% endblock %}
+{% block title %}Deletar pagamento{% endblock %}
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+<link rel="stylesheet" href="{% static 'css/pagamentos/pagamentos.css' %}">
 {% endblock extra_css %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
@@ -18,13 +18,13 @@
 
 <body>
 
-<h2>Deletar aliavacao</h2>
-<p>Deseja realmente excluir a avaliacao <strong>{{ obj.nome }}</strong>?</p>
+<h2>Deletar pagamento</h2>
+<p>Deseja realmente excluir o pagamento <strong>{{ object.nome }}</strong>?</p>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirmar exclusão">
 </form>
-<a href="{% url 'list_avaliacao' %}">Cancelar</a>
+<a href="{% url 'list_pagamento' %}">Cancelar</a>
 
 </body>
 {% endblock %}

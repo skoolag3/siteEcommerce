@@ -1,0 +1,50 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Pagamentos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Pagamentos</h2>
+
+<a href="{% url 'ins_pagamento' %}" class="btn-add">+ Inserir Novo Pagamento</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pedido</th>
+            <th>Método</th>
+            <th>Status</th>
+            <th>Valor</th>
+            <th>Data Criação</th>
+            <th>Data Pagamento</th>
+            <th>Transação ID</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in objects %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.pedido.id }}</td>
+            <td>{{ p.get_metodo_display }}</td>
+            <td>{{ p.get_status_display }}</td>
+            <td>{{ p.valor }}</td>
+            <td>{{ p.data_criacao|date:"d/m/Y H:i" }}</td>
+            <td>{% if p.data_pagamento %}{{ p.data_pagamento|date:"d/m/Y H:i" }}{% else %}-{% endif %}</td>
+            <td>{{ p.transacao_id|default:"-" }}</td>
+            <td>
+                <a href="{% url 'upd_pagamento' p.id %}">Editar</a> |
+                <a href="{% url 'del_pagamento' p.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9">Nenhum pagamento encontrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

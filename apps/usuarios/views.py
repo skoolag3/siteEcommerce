@@ -90,8 +90,7 @@ def del_user(request, pk):
         aviso = 'Deletado com sucesso!'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_user'))
-
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'usuarios/user_del.html', context)
 
 # crud endereço 
@@ -138,5 +137,5 @@ def del_endereco(request, pk):
         aviso = 'Deletado com sucesso!'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_endereco'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'enderecos/endereco_del.html', context)

@@ -1,0 +1,44 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Carrinhos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Carrinhos</h2>
+
+<a href="{% url 'ins_carrinho' %}" class="btn-add">+ Inserir Novo Carrinho</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Status</th>
+            <th>Criado em</th>
+            <th>Atualizado em</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in objects %}
+        <tr>
+            <td>{{ c.id }}</td>
+            <td>{{ c.usuario.nome }}</td>
+            <td>{{ c.get_status_display }}</td>
+            <td>{{ c.criado_em|date:"d/m/Y H:i" }}</td>
+            <td>{{ c.atualizado_em|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_carrinho' c.id %}">Editar</a> |
+                <a href="{% url 'del_carrinho' c.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">Nenhum carrinho encontrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -35,7 +35,7 @@
             <td>{{ p.nome }}</td>
             <td>{{ p.descricao|truncatechars:50 }}</td>
             <td>{{ p.preco_base }}</td>
-            <td>{{ p.vendedor.nome }}</td>
+            <td>{% if p.vendedor %}{{ p.vendedor.usuario.nome }}{% else %}-{% endif %}</td>
             <td>{{ p.categoria.nome }}</td>
             <td>{% if p.subcategoria %}{{ p.subcategoria.nome }}{% else %}-{% endif %}</td>
             <td>{{ p.get_status_display }}</td>

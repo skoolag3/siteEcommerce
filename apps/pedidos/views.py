@@ -43,7 +43,7 @@ def del_pedido(request, pk):
         aviso = "Pedido deletado"
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_pedido'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'pedido/pedido_del.html', context)
 
 # crud -pedidoItem
@@ -84,5 +84,5 @@ def del_pedidoitem(request, pk):
         aviso = "Item do pedido deletado"
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_pedidoitem'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'pedidoitem/pedidoitem_del.html', context)

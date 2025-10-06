@@ -49,7 +49,7 @@ def del_categoria(request, pk):
         aviso = 'categoria deletada'
         messages.success(request, aviso)
         return HttpResponseRedirect(reverse('list_categoria'))
-    context = {'object': obj}
+    context = {'obj': obj}
     return render(request, 'categoria/categoria_del.html', context)
 
 #crud subcategoria

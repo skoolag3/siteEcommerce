@@ -1,0 +1,48 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Itens do Carrinho{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Itens do Carrinho</h2>
+
+<a href="{% url 'ins_carrinhoitem' %}" class="btn-add">+ Inserir Novo Item no Carrinho</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Produto</th>
+            <th>Variação</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Adicionado em</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in objects %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.carrinho.usuario.nome }}</td>
+            <td>{{ item.produto.nome }}</td>
+            <td>{% if item.variacao %}{{ item.variacao }}{% else %}-{% endif %}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.preco_unitario }}</td>
+            <td>{{ item.adicionado_em|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_carrinhoitem' item.id %}">Editar</a> |
+                <a href="{% url 'del_carrinhoitem' item.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">Nenhum item encontrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
