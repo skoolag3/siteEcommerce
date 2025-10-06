@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -14,15 +15,15 @@ def ins_avaliacao(request):
             form.save()
             aviso = 'avaliação inseridaa'
             messages.success(request, aviso)
-            return redirect(reverse('list_avaliacao'))
+            return HttpResponseRedirect(reverse('list_avaliacao'))
     else:
         form = AvaliacaoForm()
-    return render(request, 'avaliacao/form.html', {'form': form})
+    return render(request, 'avaliacao/avaliacao_ins.html', {'form': form})
 
 
 def list_avaliacao(request):
     avaliacoes = Avaliacao.objects.all()
-    return render(request, 'avaliacao/list.html', {'objects': avaliacoes})
+    return render(request, 'avaliacao/avaliacoes.html', {'objects': avaliacoes})
 
 
 
@@ -34,10 +35,11 @@ def upd_avaliacao(request, pk):
             form.save()
             aviso = 'avaliação atualizada'
             messages.success(request, aviso)
-            return redirect(reverse('list_avaliacao'))
+            return HttpResponseRedirect(reverse('list_avaliacao'))
     else:
         form = AvaliacaoForm(instance=obj)
-    return render(request, 'avaliacao/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'avaliacao/avaliacao_upd.html', context)
 
 
 def del_avaliacao(request, pk):
@@ -46,5 +48,6 @@ def del_avaliacao(request, pk):
         obj.delete()
         aviso = 'avaliação deletada'
         messages.success(request, aviso)
-        return redirect(reverse('list_avaliacao'))
-    return render(request, 'avaliacao/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_avaliacao'))
+    context = {'object': obj}
+    return render(request, 'avaliacao/avaliacao_del.html', context)

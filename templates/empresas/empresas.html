@@ -1,0 +1,67 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Empresas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Empresas</h2>
+<a href="{% url 'ins_empresa' %}" class="btn btn-primary">+ Inserir Nova Empresa</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome Fantasia</th>
+            <th>Razão Social</th>
+            <th>CNPJ</th>
+            <th>Data Fundação</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>CEP</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Site</th>
+            <th>Responsável Legal</th>
+            <th>Status</th>
+            <th>Criado em</th>
+            <th>Atualizado em</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in objects %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.nome_fantasia }}</td>
+            <td>{{ e.razao_social }}</td>
+            <td>{{ e.cnpj }}</td>
+            <td>{% if e.data_fundacao %}{{ e.data_fundacao|date:"d/m/Y" }}{% else %}-{% endif %}</td>
+            <td>{{ e.endereco }}</td>
+            <td>{{ e.cidade }}</td>
+            <td>{{ e.estado }}</td>
+            <td>{{ e.cep }}</td>
+            <td>{{ e.telefone }}</td>
+            <td>{{ e.email }}</td>
+            <td>{{ e.site }}</td>
+            <td>{{ e.responsavel_legal }}</td>
+            <td>{{ e.get_status_display }}</td>
+            <td>{{ e.data_criacao|date:"d/m/Y H:i" }}</td>
+            <td>{{ e.data_atualizacao|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_empresa' e.id %}">Editar</a> |
+                <a href="{% url 'del_empresa' e.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="17">Nenhuma empresa cadastrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

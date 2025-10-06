@@ -34,7 +34,7 @@ def login(request):
             aviso = f'Bem-vindo, {user.nome}!'
             messages.success(request, aviso)
             next_url = request.GET.get('next', reverse('list_user'))
-            return redirect(next_url)
+            return HttpResponseRedirect(next_url)
         else:
             aviso = 'Usuário ou senha inválidos!'
             messages.error(request, aviso)
@@ -44,7 +44,7 @@ def user_logout(request):
     logout(request)
     aviso = 'logout concluido'
     messages.success(request, aviso)
-    return redirect(reverse('user_login'))
+    return HttpResponseRedirect(reverse('login'))
 
 
 
@@ -56,15 +56,15 @@ def ins_user(request):
             form.save()
             aviso = 'Inserido com sucesso!'
             messages.success(request, aviso)
-            return redirect(reverse('list_user'))
+            return HttpResponseRedirect(reverse('list_user'))
     else:
         form = UserForm()
-    return render(request, 'user/form.html', {'form': form})
+    return render(request, 'usuarios/user_ins.html', {'form': form})
 
 
 def list_user(request):
     users = User.objects.all()
-    return render(request, 'user/list.html', {'objects': users})
+    return render(request, 'usuarios/users.html', {'objects': users})
 
 
 
@@ -76,10 +76,11 @@ def upd_user(request, pk):
             form.save()
             aviso = 'Atualizado com sucesso!'
             messages.success(request, aviso)
-            return redirect(reverse('list_user'))
+            return HttpResponseRedirect(reverse('list_user'))
     else:
         form = UserForm(instance=obj)
-    return render(request, 'user/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'usuarios/user_upd.html', context)
 
 
 def del_user(request, pk):
@@ -88,9 +89,10 @@ def del_user(request, pk):
         obj.delete()
         aviso = 'Deletado com sucesso!'
         messages.success(request, aviso)
-        return redirect(reverse('list_user'))
-    return render(request, 'user/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_user'))
 
+    context = {'object': obj}
+    return render(request, 'usuarios/user_del.html', context)
 
 # crud endereço 
 
@@ -102,15 +104,15 @@ def ins_endereco(request):
             form.save()
             aviso = 'Criado com sucesso!'
             messages.success(request, aviso)
-            return redirect(reverse('list_endereco'))
+            return HttpResponseRedirect(reverse('list_endereco'))
     else:
         form = EnderecoForm()
-    return render(request, 'endereco/form.html', {'form': form})
+    return render(request, 'enderecos/endereco_ins.html', {'form': form})
 
 
 def list_endereco(request):
     enderecos = Endereco.objects.all()
-    return render(request, 'endereco/list.html', {'objects': enderecos})
+    return render(request, 'enderecos/enderecos.html', {'objects': enderecos})
 
 
 
@@ -122,10 +124,11 @@ def upd_endereco(request, pk):
             form.save()
             aviso = 'Atualizado com sucesso!'
             messages.success(request, aviso)
-            return redirect(reverse('list_endereco'))
+            return HttpResponseRedirect(reverse('list_endereco'))
     else:
         form = EnderecoForm(instance=obj)
-    return render(request, 'endereco/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'enderecos/endereco_upd.html', context)
 
 
 def del_endereco(request, pk):
@@ -134,5 +137,6 @@ def del_endereco(request, pk):
         obj.delete()
         aviso = 'Deletado com sucesso!'
         messages.success(request, aviso)
-        return redirect(reverse('list_endereco'))
-    return render(request, 'endereco/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_endereco'))
+    context = {'object': obj}
+    return render(request, 'enderecos/endereco_del.html', context)

@@ -1,0 +1,53 @@
+{% extends '__base.html' %}
+ 
+{% load static %}
+
+{% block title %}Lista de Usuarios{% endblock %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+{% block content %}
+
+<body>
+
+<h2>Lista de Usuários</h2>
+<a href="{% url 'ins_user' %}">+ Inserir Novo Usuário</a>
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in objects %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.nome }}</td>
+            <td>{{ u.email }}</td>
+            <td>
+                <a href="{% url 'upd_user' u.id %}">Editar</a> |
+                <a href="{% url 'del_user' u.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Nenhum usuário encontrado.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+{% endblock %}
+</html>

@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
@@ -15,15 +16,15 @@ def ins_empresa(request):
             form.save()
             aviso = 'empresa criada'
             messages.success(request, aviso)
-            return redirect(reverse('list_empresa'))
+            return HttpResponseRedirect(reverse('list_empresa'))
     else:
         form = EmpresaForm()
-    return render(request, 'empresa/form.html', {'form': form})
+    return render(request, 'empresas/empresa_ins.html', {'form': form})
 
 
 def list_empresa(request):
     empresas = Empresa.objects.all()
-    return render(request, 'empresa/list.html', {'objects': empresas})
+    return render(request, 'empresas/empresas.html', {'objects': empresas})
 
 
 def upd_empresa(request, pk):
@@ -34,10 +35,11 @@ def upd_empresa(request, pk):
             form.save()
             aviso = 'empresa atualizada'
             messages.success(request, aviso)
-            return redirect(reverse('list_empresa'))
+            return HttpResponseRedirect(reverse('list_empresa'))
     else:
         form = EmpresaForm(instance=obj)
-    return render(request, 'empresa/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'empresas/empresa_upd.html', context)
 
 def del_empresa(request, pk):
     obj = get_object_or_404(Empresa, pk=pk)
@@ -45,11 +47,12 @@ def del_empresa(request, pk):
         obj.delete()
         aviso = 'empresa deletada'
         messages.success(request, aviso)
-        return redirect(reverse('list_empresa'))
-    return render(request, 'empresa/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_empresa'))
+    context = {'object': obj}
+    return render(request, 'empresas/empresa_del.html', context)
 
 
-#crud 
+#crud vendedor
 def ins_vendedor(request):
     if request.method == 'POST':
         form = VendedorForm(request.POST)
@@ -57,15 +60,15 @@ def ins_vendedor(request):
             form.save()
             aviso = 'vendedor inserido'
             messages.success(request, aviso)
-            return redirect(reverse('list_vendedor'))
+            return HttpResponseRedirect(reverse('list_vendedor'))
     else:
         form = VendedorForm()
-    return render(request, 'vendedor/form.html', {'form': form})
+    return render(request, 'vendedor/vendedor_ins.html', {'form': form})
 
 
 def list_vendedor(request):
     vendedores = Vendedor.objects.all()
-    return render(request, 'vendedor/list.html', {'objects': vendedores})
+    return render(request, 'vendedor/vendedores.html', {'objects': vendedores})
 
 
 def upd_vendedor(request, pk):
@@ -76,10 +79,11 @@ def upd_vendedor(request, pk):
             form.save()
             aviso = 'vendedor atualizado'
             messages.success(request, aviso)
-            return redirect(reverse('list_vendedor'))
+            return HttpResponseRedirect(reverse('list_vendedor'))
     else:
         form = VendedorForm(instance=obj)
-    return render(request, 'vendedor/form.html', {'form': form})
+        context = {'form': form, 'obj': obj}
+    return render(request, 'vendedor/vendedor_upd.html', context)
 
 def del_vendedor(request, pk):
     obj = get_object_or_404(Vendedor, pk=pk)
@@ -87,5 +91,6 @@ def del_vendedor(request, pk):
         obj.delete()
         aviso = 'vendedor deletado'
         messages.success(request, aviso)
-        return redirect(reverse('list_vendedor'))
-    return render(request, 'vendedor/delete.html', {'object': obj})
+        return HttpResponseRedirect(reverse('list_vendedor'))
+    context = {'object': obj}
+    return render(request, 'vendedor/vendedor_del.html', context)

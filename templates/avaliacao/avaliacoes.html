@@ -1,0 +1,50 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Avaliações{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Avaliações</h2>
+
+<a href="{% url 'ins_avaliacao' %}" class="btn-add">+ Inserir Nova Avaliação</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Usuário</th>
+            <th>Pedido</th>
+            <th>Nota</th>
+            <th>Comentário</th>
+            <th>Data Criação</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in objects %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.produto.nome }}</td>
+            <td>{{ a.usuario.nome }}</td>
+            <td>{{ a.pedido.id }}</td>
+            <td>{{ a.nota }}</td>
+            <td>{{ a.comentario|default:"-" }}</td>
+            <td>{{ a.data_criacao|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_avaliacao' a.id %}">Editar</a> |
+                <a href="{% url 'del_avaliacao' a.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">Nenhuma avaliação encontrada.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

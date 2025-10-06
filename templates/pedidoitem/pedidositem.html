@@ -1,0 +1,52 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Itens de Pedido{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Itens de Pedido</h2>
+
+<a href="{% url 'ins_pedidoitem' %}" class="btn-add">+ Inserir Novo Item</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Pedido</th>
+            <th>Produto</th>
+            <th>Variação</th>
+            <th>Vendedor</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in objects %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.pedido.id }}</td>
+            <td>{{ item.produto.nome }}</td>
+            <td>{% if item.variacao %}{{ item.variacao }}{% else %}-{% endif %}</td>
+            <td>{% if item.vendedor %}{{ item.vendedor.usuario.nome }}{% else %}-{% endif %}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.preco_unitario }}</td>
+            <td>{{ item.get_status_display }}</td>
+            <td>
+                <a href="{% url 'upd_pedidoitem' item.id %}">Editar</a> |
+                <a href="{% url 'del_pedidoitem' item.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="9">Nenhum item de pedido encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

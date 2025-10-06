@@ -1,0 +1,57 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Endereços{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Endereços</h2>
+
+<a href="{% url 'ins_endereco' %}" class="btn btn-primary">+ Inserir Novo Endereço</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Nome Destinatário</th>
+            <th>CEP</th>
+            <th>Logradouro</th>
+            <th>Número</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Telefone</th>
+            <th>Principal</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for e in objects %}
+        <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.usuario.username }}</td>
+            <td>{{ e.nome_destinatario }}</td>
+            <td>{{ e.cep }}</td>
+            <td>{{ e.logradouro }}</td>
+            <td>{{ e.numero }}</td>
+            <td>{{ e.cidade }}</td>
+            <td>{{ e.estado }}</td>
+            <td>{{ e.telefone_contato }}</td>
+            <td>{% if e.principal %}Sim{% else %}Não{% endif %}</td>
+            
+            <td>
+                <a href="{% url 'upd_endereco' e.id %}">Editar</a> |
+                <a href="{% url 'del_endereco' e.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="11">Nenhum endereço cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

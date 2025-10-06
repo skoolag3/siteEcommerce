@@ -1,0 +1,31 @@
+{% extends '__base.html' %}
+ 
+{% load static %}
+
+{% block title %}Atualizar Usuário{% endblock %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+{% block content %}
+
+<body>
+
+<h2>Atualizar Usuário</h2>
+<form action="{% url 'upd_user' pk=obj.id %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Atualizar">
+</form>
+<a href="{% url 'list_user' %}">Voltar</a>
+
+</body>
+{% endblock %}
+</html>

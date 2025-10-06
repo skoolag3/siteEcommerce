@@ -1,47 +1,56 @@
 {% extends '__base.html' %}
- 
 {% load static %}
 
-{% block title %}Produtos{% endblock %}
+{% block title %}Lista de Produtos{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
 {% endblock extra_css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+
 {% block content %}
+<h2>Lista de Produtos</h2>
 
-<body>
+<a href="{% url 'ins_produto' %}" class="btn btn-primary">+ Inserir Novo Produto</a>
 
-<div class="acoesTopo">
-    <a href="{% url 'produtos:criarProdutos' %}" class="btnCriar">Coloque o seu produto</a>
-</div>
-
-<div class="produtosApp">
-    {% for p in produtos %}
-        <div class="cardProduto">
-            <img src="{% static 'imgs/template.png' %}" alt="{{ p.nome }}" class="imagemProduto">
-            <h2 class="tituloProduto">{{ p.nome }}</h2>
-            <p class="descricaoProduto">{{ p.descricao }}</p>
-            <p class="precoProduto">R$ {{ p.preco }}</p>
-            <p class="estoqueProduto"><strong>Estoque:</strong> {{ p.estoque }}</p>
-
-            <div class="botoesProduto">
-                <a href="{% url 'produtos:atualizarProdutos' p.idProdutos %}" class="btnAlterar">Alterar</a>
-                <a href="{% url 'produtos:deletarProdutos' p.idProdutos %}" class="btnDeletar">Deletar</a>
-            </div>
-        </div>
-    {% empty %}
-        <p class="semProdutos">Sem produtos</p>
-    {% endfor %}
-</div>
-
-
-</body>
-{% endblock %}
-</html>
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Vendedor</th>
+            <th>Categoria</th>
+            <th>Subcategoria</th>
+            <th>Status</th>
+            <th>Criado em</th>
+            <th>Atualizado em</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in objects %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nome }}</td>
+            <td>{{ p.descricao|truncatechars:50 }}</td>
+            <td>{{ p.preco_base }}</td>
+            <td>{{ p.vendedor.nome }}</td>
+            <td>{{ p.categoria.nome }}</td>
+            <td>{% if p.subcategoria %}{{ p.subcategoria.nome }}{% else %}-{% endif %}</td>
+            <td>{{ p.get_status_display }}</td>
+            <td>{{ p.criado_em|date:"d/m/Y H:i" }}</td>
+            <td>{{ p.atualizado_em|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_produto' p.id %}">Editar</a> |
+                <a href="{% url 'del_produto' p.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="11">Nenhum produto cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

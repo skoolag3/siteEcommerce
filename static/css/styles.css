@@ -101,3 +101,11 @@ body {
     border-top: 1px solid #ddd;
     color: #fff;
 }
+
+label, form, table {
+    color: #ffffff;
+}
+
+input, textarea, select {
+    color: #000000;
+}

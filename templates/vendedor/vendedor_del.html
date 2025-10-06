@@ -1,0 +1,31 @@
+{% extends '__base.html' %}
+ 
+{% load static %}
+
+{% block title %}Deletar vendedor{% endblock %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+{% block content %}
+
+<body>
+
+<h2>Deletar vendedor</h2>
+<p>Deseja realmente excluir o vendedor <strong>{{ object.nome }}</strong>?</p>
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirmar exclusão">
+</form>
+<a href="{% url 'list_vendedor' %}">Cancelar</a>
+
+</body>
+{% endblock %}
+</html>

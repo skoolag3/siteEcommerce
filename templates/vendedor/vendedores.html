@@ -1,0 +1,50 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Vendedores{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Vendedores</h2>
+
+<a href="{% url 'ins_vendedor' %}" class="btn btn-primary">+ Inserir Novo Vendedor</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome do Usuário</th>
+            <th>Email</th>
+            <th>Empresa</th>
+            <th>Status</th>
+            <th>Comissão (%)</th>
+            <th>Data de Cadastro</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in objects %}
+        <tr>
+            <td>{{ v.id }}</td>
+            <td>{{ v.usuario.nome }}</td>
+            <td>{{ v.usuario.email }}</td>
+            <td>{% if v.empresa %}{{ v.empresa.nome }}{% else %}-{% endif %}</td>
+            <td>{{ v.get_status_display }}</td>
+            <td>{{ v.comissao_percentual }}</td>
+            <td>{{ v.data_cadastro|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_vendedor' v.id %}">Editar</a> |
+                <a href="{% url 'del_vendedor' v.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">Nenhum vendedor cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

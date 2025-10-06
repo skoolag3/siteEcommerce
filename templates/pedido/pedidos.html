@@ -1,0 +1,64 @@
+{% extends '__base.html' %}
+{% load static %}
+
+{% block title %}Lista de Pedidos{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<h2>Lista de Pedidos</h2>
+
+<a href="{% url 'ins_pedido' %}" class="btn-add">+ Inserir Novo Pedido</a>
+
+<table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Endereço de Entrega</th>
+            <th>Status</th>
+            <th>Subtotal</th>
+            <th>Frete</th>
+            <th>Desconto</th>
+            <th>Total</th>
+            <th>Observações</th>
+            <th>Data Criação</th>
+            <th>Data Atualização</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in objects %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.usuario.nome }}</td>
+            <td>
+                {% if p.endereco_entrega %}
+                    {{ p.endereco_entrega.logradouro }}, {{ p.endereco_entrega.numero }} - {{ p.endereco_entrega.cidade }}/{{ p.endereco_entrega.estado }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>{{ p.get_status_display }}</td>
+            <td>{{ p.subtotal }}</td>
+            <td>{{ p.frete }}</td>
+            <td>{{ p.desconto }}</td>
+            <td>{{ p.total }}</td>
+            <td>{{ p.observacoes|default:"-" }}</td>
+            <td>{{ p.data_criacao|date:"d/m/Y H:i" }}</td>
+            <td>{{ p.data_atualizacao|date:"d/m/Y H:i" }}</td>
+            <td>
+                <a href="{% url 'upd_pedido' p.id %}">Editar</a> |
+                <a href="{% url 'del_pedido' p.id %}">Excluir</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="12">Nenhum pedido encontrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
