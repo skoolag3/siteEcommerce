@@ -40,11 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.home',
     'apps.usuarios',
+    'apps.vendedores',
     'apps.produtos',
     'apps.carrinho',
-    'apps.pagamento',
     'apps.pedidos',
-    'apps.vendedores',
+    'apps.pagamento',
     'apps.avaliacoes',
 ]
 
@@ -89,9 +89,6 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
-        'OPTIONS': {
-            'charset': 'utf8mb4',
-        },
     }
 }
 

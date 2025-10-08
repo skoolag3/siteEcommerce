@@ -9,34 +9,8 @@
 {% endblock extra_css %}
 
 {% block content %}
-
+<center>
 <h1>Bem-vindo ao EzShopping!</h1>
 <p>Explore produtos e faça suas compras</p>
-
-<div class="vitrineProdutos">
-    <h2>Recentes</h2>
-    <div class="produtosApp">
-        {% for p in produtosRecentes %}
-            <div class="cardProduto">
-                <img src="{% static 'imgs/template.png' %}" class="imagemProduto" alt="{{ p.nome }}">
-                <h3 class="tituloProduto">{{ p.nome }}</h3>
-                <p class="precoProduto">R$ {{ p.preco }}</p>
-            </div>
-        {% endfor %}
-    </div>
-</div>
-
-<div class="vitrineProdutos">
-    <h2>Ordem Alfabética</h2>
-    <div class="produtosApp">
-        {% for p in produtosAlfabetico %}
-            <div class="cardProduto">
-                <img src="{% static 'imgs/template.png' %}" class="imagemProduto" alt="{{ p.nome }}">
-                <h3 class="tituloProduto">{{ p.nome }}</h3>
-                <p class="precoProduto">R$ {{ p.preco }}</p>
-            </div>
-        {% endfor %}
-    </div>
-</div>
-
+</center>
 {% endblock content %}

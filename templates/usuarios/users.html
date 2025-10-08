@@ -4,22 +4,14 @@
 
 {% block title %}Lista de Usuarios{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
-{% endblock extra_css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+
 {% block content %}
 
 <body>
 
 <h2>Lista de Usuários</h2>
-<a href="{% url 'ins_user' %}">+ Inserir Novo Usuário</a>
+<a class="btnCaminho" href="{% url 'ins_user' %}">+ Inserir Novo Usuário</a>
+<a class="btnCaminho" href="{% url 'list_endereco' %}">Ver Endereços</a>
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>
         <tr>

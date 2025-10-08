@@ -10,7 +10,10 @@
 {% block content %}
 <h2>Lista de Carrinhos</h2>
 
-<a href="{% url 'ins_carrinho' %}" class="btn-add">+ Inserir Novo Carrinho</a>
+<a class="btnCaminho" href="{% url 'ins_carrinho' %}" class="btn-add">+ Inserir Novo Carrinho</a>
+<a class="btnCaminho" href="{% url 'list_carrinhoitem' %}" class="btn-add">Ver itens do Carrinho</a>
+
+
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>

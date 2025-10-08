@@ -11,7 +11,7 @@ class Avaliacao(models.Model):
     data_criacao = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        unique_together = ['produto', 'usuario', 'pedido']
+        unique_together = ['pedido', 'produto', 'usuario'] 
         ordering = ['-data_criacao']
     
     def __str__(self):

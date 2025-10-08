@@ -4,7 +4,7 @@ from django.conf import settings
 
 # Create your models here.
 class Carrinho(models.Model):
-    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='carrinhos')
+    usuario = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='carrinho')
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
     
@@ -14,8 +14,11 @@ class Carrinho(models.Model):
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='ativo')
 
+    class Meta:
+        verbose_name_plural = "Carrinhos"
+
     def __str__(self):
-        return f"Carrinho {self.id} - {self.usuario.nome}"
+        return f"Carrinho de {self.usuario.nome}"
 
 
 class CarrinhoItem(models.Model):

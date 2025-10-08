@@ -10,7 +10,11 @@
 {% block content %}
 <h2>Lista de Produtos</h2>
 
-<a href="{% url 'ins_produto' %}" class="btn btn-primary">+ Inserir Novo Produto</a>
+<a class="btnCaminho" href="{% url 'ins_produto' %}" class="btn btn-primary">+ Inserir Novo Produto</a>
+<a class="btnCaminho" href="{% url 'list_produtovariacao' %}" class="btn btn-primary">Ver Variacao de Produtos</a>
+<a class="btnCaminho" href="{% url 'list_categoria' %}" class="btn-add">Ver Categoria</a>
+
+
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>

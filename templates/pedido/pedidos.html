@@ -10,7 +10,10 @@
 {% block content %}
 <h2>Lista de Pedidos</h2>
 
-<a href="{% url 'ins_pedido' %}" class="btn-add">+ Inserir Novo Pedido</a>
+<a class="btnCaminho" href="{% url 'ins_pedido' %}" class="btn-add">+ Inserir Novo Pedido</a>
+<a class="btnCaminho" href="{% url 'list_pedidoitem' %}" class="btn-add">+ Ver Pedido de Itens</a>
+
+
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>

@@ -4,27 +4,17 @@
 
 {% block title %}Deletar pagamento{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/pagamentos/pagamentos.css' %}">
-{% endblock extra_css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
 {% block content %}
 
 <body>
 
 <h2>Deletar pagamento</h2>
-<p>Deseja realmente excluir o pagamento <strong>{{ object.nome }}</strong>?</p>
+<p>Deseja realmente excluir o pagamento?</p>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirmar exclusão">
 </form>
-<a href="{% url 'list_pagamento' %}">Cancelar</a>
+<a class="btnCaminho" href="{% url 'list_pagamento' %}">Cancelar</a>
 
 </body>
 {% endblock %}

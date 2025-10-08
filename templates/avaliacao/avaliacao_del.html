@@ -4,27 +4,18 @@
 
 {% block title %}Deletar avaliacao{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
-{% endblock extra_css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+
 {% block content %}
 
 <body>
 
-<h2>Deletar aliavacao</h2>
-<p>Deseja realmente excluir a avaliacao <strong>{{ obj.nome }}</strong>?</p>
+<h2>Deletar avaliação</h2>
+<p>Deseja realmente excluir a avaliacao?</p>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirmar exclusão">
 </form>
-<a href="{% url 'list_avaliacao' %}">Cancelar</a>
+<a class="btnCaminho" href="{% url 'list_avaliacao' %}">Cancelar</a>
 
 </body>
 {% endblock %}

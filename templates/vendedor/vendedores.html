@@ -10,7 +10,9 @@
 {% block content %}
 <h2>Lista de Vendedores</h2>
 
-<a href="{% url 'ins_vendedor' %}" class="btn btn-primary">+ Inserir Novo Vendedor</a>
+<a class="btnCaminho" href="{% url 'ins_vendedor' %}" class="btn btn-primary">+ Inserir Novo Vendedor</a>
+<a class="btnCaminho" href="{% url 'list_empresa' %}" class="btn btn-primary">+ Ver Empresas</a>
+
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>

@@ -5,7 +5,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: radial-gradient(circle at top, #331414, #1a1a1a 50%, #000 100%),
+    background: radial-gradient(circle at top, #0b1a0b, #061006 50%, #000 100%),
                 radial-gradient(circle at bottom, rgba(24, 88, 15, 0.6), transparent 60%),
                 radial-gradient(circle at bottom, rgba(23, 80, 16, 0.4), transparent 70%),
                 radial-gradient(circle at top, rgba(10, 68, 15, 0.4), transparent 80%);
@@ -16,9 +16,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #096b00;
+    background-color: #064b00;
     padding: 1rem 1rem;
-    color: rgb(157, 0, 248);
+    color: #9d00f8;
     gap: 2rem;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .navBtn {
-    color: rgb(157, 0, 248);
+    color: #9d00f8;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
@@ -57,13 +57,13 @@ body {
 
 .lateralMenu {
     width: 70px;
-    background-color: #096b00;
+    background-color: #064b00;
     padding: 1.5rem 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    border-left: 1px solid #000000;
+    border-left: 1px solid #000;
 }
 
 .sideLink {
@@ -82,7 +82,7 @@ body {
     top: 0;
     height: 100%;
     width: 0;
-    background-color: #fff;
+    background-color: #9d00f8;
     transition: width 0.3s;
 }
 
@@ -97,15 +97,256 @@ body {
 .footer {
     text-align: center;
     padding: 1rem;
-    background-color: #02880d;
+    background-color: #076500;
     border-top: 1px solid #ddd;
     color: #fff;
 }
 
-label, form, table {
+.btnCaminho {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(90deg, #9d00f8, #b18aff);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btnCaminho:hover {
+    background: linear-gradient(90deg, #7a00c1, #8f6eff);
+    transform: translateY(-2px);
+}
+
+
+table, form {
     color: #ffffff;
 }
 
-input, textarea, select {
-    color: #000000;
+form {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #064b00;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+form .form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+form label {
+    width: 30%;
+    margin: 0;
+    padding-right: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: right;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form select,
+form textarea {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #2b4a2b;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #0e3a20;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #9d00f8;
+    box-shadow: 0 0 0 3px rgba(157,0,248,0.2);
+    outline: none;
+}
+
+form button,
+form input[type="submit"] {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #9d00f8, #b18aff);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    margin: 1vw;
+    align-self: flex-start;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+    background: linear-gradient(90deg, #7a00c1, #8f6eff);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+form textarea {
+    min-height: 100px;
+}
+
+form .errorlist {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    margin-left: 30%;
+}
+
+form input:disabled,
+form select:disabled,
+form textarea:disabled {
+    background-color: #2b4a2b;
+    cursor: not-allowed;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    color: #fff;
+    background-color: #064b00;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+table thead {
+    background: linear-gradient(90deg, #9d00f8, #b18aff);
+}
+
+table thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+}
+
+table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: rgba(0, 70, 0, 0.3);
+}
+
+table tbody tr:hover {
+    background-color: rgba(157,0,248,0.2);
+}
+
+table tbody td {
+    padding: 10px 12px;
+}
+
+table tbody td a {
+    color: #9d00f8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+table tbody td a:hover {
+    color: #fff;
+}
+
+table tbody td[colspan] {
+    text-align: center;
+    font-style: italic;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    table thead {
+        display: none;
+    }
+    table tbody tr {
+        margin-bottom: 1rem;
+        background-color: #064b00;
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        flex: 1;
+        color: #bbb;
+    }
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9rem;
+        margin: 1rem 0;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    table tbody tr {
+        background-color: #064b00;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+    table tbody td {
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    table tbody td:last-child {
+        border-bottom: none;
+    }
+
+    table tbody td::before {
+        content: attr(data-label);
+        color: #9d00f8;
+        font-weight: 600;
+        flex: 1;
+        text-align: left;
+        padding-right: 1rem;
+    }
+
+    table tbody td a {
+        font-size: 0.9rem;
+        word-break: break-word;
+    }
+
+    .btnCaminho {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
 }

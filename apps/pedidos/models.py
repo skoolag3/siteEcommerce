@@ -57,3 +57,5 @@ class PedidoItem(models.Model):
         if self.variacao:
             return f"{self.quantidade} x {self.produto.nome} ({self.variacao})"
         return f"{self.quantidade} x {self.produto.nome}"
+
+        

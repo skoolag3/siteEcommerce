@@ -10,7 +10,9 @@
 {% block content %}
 <h2>Lista de Categorias</h2>
 
-<a href="{% url 'ins_categoria' %}" class="btn-add">+ Inserir Nova Categoria</a>
+<a class="btnCaminho" href="{% url 'ins_categoria' %}" class="btn-add">+ Inserir Nova Categoria</a>
+<a class="btnCaminho" href="{% url 'list_subcategoria' %}" class="btn-add">Ver SubCategorias</a>
+
 
 <table border="1" cellspacing="0" cellpadding="5">
     <thead>

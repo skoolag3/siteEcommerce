@@ -4,27 +4,18 @@
 
 {% block title %}Deletar pedido{% endblock %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/produtos/produtos.css' %}">
-{% endblock extra_css %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+
 {% block content %}
 
 <body>
 
 <h2>Deletar pedido</h2>
-<p>Deseja realmente excluir a pedido <strong>{{ object.nome }}</strong>?</p>
+<p>Deseja realmente excluir a pedido?</p>
 <form method="post">
     {% csrf_token %}
     <input type="submit" value="Confirmar exclusão">
 </form>
-<a href="{% url 'list_pedido' %}">Cancelar</a>
+<a class="btnCaminho" href="{% url 'list_pedido' %}">Cancelar</a>
 
 </body>
 {% endblock %}
